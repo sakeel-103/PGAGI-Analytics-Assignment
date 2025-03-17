@@ -1,60 +1,70 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="home-container">
+      {/* Navbar */}
+      <nav className="navbar">
+        <div className="navbar-logo">
+          <Link href="/">PGAGI Analytics</Link>
+        </div>
+        <div className="navbar-links">
+          <Link href="/">Home</Link>
+          <Link href="/weather">Weather</Link>
+          <Link href="/news">News</Link>
+          <Link href="/finance">Finance</Link>
+        </div>
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Main Content */}
+      <main className="main-content">
+        {/* Dashboard Header */}
+        <h1 className="dashboard-header">
+          Welcome to the PGAGI Analytics Dashboard
+        </h1>
+
+        {/* Dashboard Sections */}
+        <div className="dashboard-grid">
+          {/* Weather Section */}
+          <div className="dashboard-section">
+            <h2 className="section-title">Weather</h2>
+            <p className="section-description">
+              View real-time weather data for your location, including temperature, humidity, and forecasts.
+            </p>
+            <Link href="/weather" className="section-button weather-button">
+            Weather
+            </Link>
+          </div>
+
+          {/* News Section */}
+          <div className="dashboard-section">
+            <h2 className="section-title">News</h2>
+            <p className="section-description">
+              Stay updated with the latest news headlines across various categories like technology, sports, and business.
+            </p>
+            <Link href="/news" className="section-button weather-button">
+              NewsFeed
+            </Link>
+          </div>
+
+          {/* Finance Section */}
+          <div className="dashboard-section">
+            <h2 className="section-title">Finance</h2>
+            <p className="section-description">
+              Track real-time stock market data, including stock prices, trends, and historical data.
+            </p>
+            <Link href="/finance" className="section-button weather-button">
+              Finance
+            </Link>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+
+      {/* Footer */}
+      <footer className="footer">
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://nextjs.org/docs"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -64,38 +74,39 @@ export default function Home() {
             alt="File icon"
             width={16}
             height={16}
+            className="icon"
           />
-          Learn
+          Documentation
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://github.com/your-repo"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
             aria-hidden
-            src="/window.svg"
-            alt="Window icon"
+            src="/github.svg"
+            alt="GitHub icon"
             width={16}
             height={16}
+            className="icon"
           />
-          Examples
+          GitHub
         </a>
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="../../public/vercel.svg"
           target="_blank"
           rel="noopener noreferrer"
         >
           <Image
             aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
+            src="/vercel.svg"
+            alt="Vercel icon"
             width={16}
             height={16}
+            className="icon"
           />
-          Go to nextjs.org →
+          Deployed on Vercel
         </a>
       </footer>
     </div>

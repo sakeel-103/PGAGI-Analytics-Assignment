@@ -1,26 +1,268 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Body background */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ede5ed; /* Light gray background */
+  font-family: Arial, sans-serif;
 }
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.navbar-logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 3rem;
+  padding-right: 150px;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--color-primary); 
+  text-decoration: underline;
+}
+
+/* Container for the entire page */
+.home-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
+  padding: 6rem 1rem 5rem; /* Adjusted padding to account for fixed navbar */
+  gap: 2rem;
+  background: linear-gradient(135deg, var(--color-background), #f0f4f8);
+  color: var(--color-text);
+}
+
+/* Main content area */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Dashboard header */
+.dashboard-header {
+  font-size: 2.5rem; /* 40px */
+  font-weight: bold;
+  text-align: center;
+  color: #0c0d0e; /* Solid blue color */
+  margin-bottom: 1rem;
+}
+
+h1{
+  color: #333;
+}
+
+/* Grid layout for dashboard sections */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Individual dashboard section (Weather, News, Finance) */
+.dashboard-section {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dashboard-section:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-section:hover::before {
+  opacity: 1;
+}
+
+/* Custom Weather button styles */
+.section-button.weather-button {
+  background-color: #28a745; /* Green color */
+  color: white;
+}
+
+.section-button.weather-button:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05);
+}
+/* Section title */
+.section-title {
+  font-size: 1.75rem; /* 28px */
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+  position: relative;
+  z-index: 2;
+}
+
+/* Section description */
+.section-description {
+  font-size: 1.1rem; /* 18px */
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Button styles */
+.section-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.section-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.section-button:hover::before {
+  opacity: 1;
+}
+
+.section-button.primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.section-button.primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.05);
+}
+
+.section-button.secondary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.section-button.secondary:hover {
+  background-color: var(--color-secondary-dark);
+  transform: scale(1.05);
+}
+
+.section-button.accent {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.section-button.accent:hover {
+  background-color: var(--color-accent-dark);
+  transform: scale(1.05);
+}
+
+/* Footer styles */
+.footer {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem; /* 14px */
+  color: var(--color-text-secondary);
+  padding: 1rem;
+  background-color: #333;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000; /* Ensure footer stays on top */
+}
+
+.footer a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer a:hover {
+  color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.2);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+/* Icon styles */
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  transition: fill 0.3s ease;
+}
+
+.footer a:hover .icon {
+  fill: var(--color-primary);
+}
+
+/* finanace page  */
+
